@@ -1,4 +1,7 @@
-// COMPONENTS
+// INPUTS
+export { default as TextareaX } from "./components/inputs/TextareaX";
+
+// BUTTONS
 export { IconButton, IconNavLink } from "./components/buttons";
 
 // UTILS
