@@ -1,3 +1,8 @@
+// COMPONENTS
+
+export { Portal } from "./components/Modal";
+export { default as Modal } from "./components/Modal";
+
 // INPUTS
 export { default as TextareaX } from "./components/inputs/TextareaX";
 

@@ -1,0 +1,89 @@
+.modal {
+    &-header {
+        position: sticky;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 72px;
+        overflow: hidden;
+        margin: 0;
+        padding: 18px 32px 16px;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+        background: #fff;
+        background-size: cover;
+        background-position: 50%;
+        background-repeat: no-repeat;
+    }
+
+    &-body {
+        position: relative;
+        display: flex;
+        flex-grow: 1;
+        overflow: auto;
+        margin: 0;
+        background: #f1f3f4;
+    }
+
+    &-footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-top: 1px solid #ebeef0;
+        padding: 2.8rem 2rem;
+    }
+}
+
+.modal {
+    &-inner {
+        margin: 24px;
+        max-width: 100%;
+        width: 100%;
+        position: relative;
+        z-index: 100;
+
+        .modal-content {
+            position: relative;
+            height: 100%;
+            padding: 0;
+            background-clip: padding-box;
+            border-radius: 3px;
+            box-shadow: 0 2.8px 2.2px rgb(0 0 0 / 2%), 0 6.7px 5.3px rgb(0 0 0 / 3%),
+                0 12.5px 10px rgb(0 0 0 / 4%), 0 22.3px 17.9px rgb(0 0 0 / 4%),
+                0 41.8px 33.4px rgb(0 0 0 / 5%), 0 100px 80px rgb(0 0 0 / 7%);
+
+            &-inner {
+                display: flex;
+                height: 100%;
+                flex-direction: column;
+            }
+        }
+    }
+    &-background {
+        z-index: 50;
+        background: #15171a;
+        opacity: 0.6;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: 100vh;
+    }
+    &-container {
+        position: absolute;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        top: 0;
+        height: 100vh;
+        overflow: auto;
+        display: flex;
+        justify-content: center;
+        z-index: 10000;
+    }
+}
