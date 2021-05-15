@@ -13,6 +13,7 @@ export { IconButton, IconNavLink } from "./components/buttons";
 
 export { HTTP } from "./utils";
 export { IS_DEV, DOMAIN } from "./utils";
+export { formatDate, formatDateToStr, formatTime } from "./utils";
 export { addForwardSlash, isRequired, getClassName } from "./utils";
 
 // CONTEXTS

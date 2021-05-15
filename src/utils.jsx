@@ -1,4 +1,5 @@
 import axios from "axios";
+import { isDate } from "lodash";
 
 export const IS_DEV = process.env.NODE_ENV !== "production";
 
@@ -20,6 +21,45 @@ export const HTTP = axios.create({
         // console.log(Math.round(progressEvt.loaded / progressEvt.total * 100) + '%')
     },
 });
+
+// DATE HELPERS
+
+export const formatDate = (date, format = { weekday: "short", month: "long", day: "numeric" }) => {
+    const date_time = new Intl.DateTimeFormat("en-US", {
+        ...format,
+        //    weekday: "short",
+        //    month: "long",
+        //    day: "numeric",
+        // hour: "numeric",
+        // minute: "numeric",
+        // year: 'numeric',
+    });
+    return date_time.format(new Date(date));
+};
+
+export const formatDateToStr = (date) => {
+    if (!isDate(date)) return "";
+
+    var dd = date.getDate();
+    var mm = date.getMonth() + 1; //January is 0!
+    var yyyy = date.getFullYear();
+
+    if (dd < 10) {
+        dd = "0" + dd;
+    }
+    if (mm < 10) {
+        mm = "0" + mm;
+    }
+
+    return yyyy + "-" + mm + "-" + dd;
+};
+
+export const formatTime = (date, format = { hour: "numeric", minute: "numeric" }) => {
+    const date_time = new Intl.DateTimeFormat("en-US", { ...format });
+    return date_time.format(new Date(date));
+};
+
+// HELPERS
 
 export const getSharedData = () =>
     new Promise(async (resolve, reject) => {
@@ -65,7 +105,8 @@ export const getClassName = (df = []) => {
     return className;
 };
 
-export const addForwardSlash = (str = isRequired("string param")) => (str.endsWith("/") ? str : `${str}/`);
+export const addForwardSlash = (str = isRequired("string param")) =>
+    str.endsWith("/") ? str : `${str}/`;
 
 export const isRequired = (name = "Param") => {
     throw new Error(`${name} is required`);
