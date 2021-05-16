@@ -1,5 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import PropTypes from "prop-types";
+
+import { getClassName } from "../../utils";
 
 import "./modal.scss";
 
@@ -8,14 +11,20 @@ export const Portal = ({ children }) => {
 };
 
 Portal.Modal = Modal;
+Portal.propTypes = { children: PropTypes.node.isRequired };
 
-export default function Modal({ id, header, children, footer }) {
+export default function Modal({ id, header, children, footer, fullscreen }) {
     return (
         <div id={id} className="modal-container">
             <div className="modal-background" />
             <div className="modal-inner">
                 <div className="modal-content">
-                    <div className="modal-content-inner">
+                    <div
+                        className={getClassName([
+                            "modal-content-inner",
+                            fullscreen && "modal-content-inner-fullscreen",
+                        ])}
+                    >
                         {header && <div className="modal-header">{header}</div>}
                         <div className="modal-body">{children}</div>
                         {footer && <div className="modal-footer">{footer}</div>}
@@ -25,3 +34,12 @@ export default function Modal({ id, header, children, footer }) {
         </div>
     );
 }
+
+Modal.propTypes = {
+    id: PropTypes.string,
+    fullscreen: PropTypes.bool,
+
+    header: PropTypes.node,
+    children: PropTypes.node.isRequired,
+    footer: PropTypes.node,
+};
