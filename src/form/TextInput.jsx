@@ -1,10 +1,10 @@
 import React, { forwardRef, useContext } from "react";
 
 import TextareaX from "../components/inputs/TextareaX";
-import { isRequired, IS_DEV } from "../utils";
+import { getClassName, isRequired, IS_DEV } from "../utils";
 import FormCtx from "./FormCtx";
 
-const withInput = (Component) =>
+const withInput = (Component, args = {}) =>
     forwardRef((props, ref) => {
         const ctx = useContext(FormCtx) || isRequired("FormCtx");
         const { name = isRequired("name prop") } = props;
@@ -16,15 +16,30 @@ const withInput = (Component) =>
 
         onChange = onChange || ctx.handleChange;
 
-        return <Component {...props} {...{ value, onChange }} ref={ref} />;
+        return (
+            <Component
+                {...args}
+                {...props}
+                className={getClassName([args.className, props.className])}
+                {...{ value, onChange }}
+                ref={ref}
+            />
+        );
     });
 
-export const TextInput = withInput("input");
-export const TextArea = withInput("textarea");
+export const TextInput = withInput("input", { className: "input" });
+export const CheckboxInput = withInput("input", {
+    type: "checkbox",
+    className: "input input-checkbox",
+});
+
+export const TextArea = withInput("textarea", { className: "textarea" });
 export const TextAreaX = withInput(TextareaX);
 
 if (IS_DEV) {
     TextInput.displayName = "TextInput";
+    CheckboxInput.displayName = "CheckboxInput";
+
     TextArea.displayName = "TextArea";
     TextAreaX.displayName = "TextAreaX";
 }

@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 import PropTypes from "prop-types";
 
 import "./form.scss";
-import { TextInput } from "./TextInput";
+import { TextArea, TextAreaX, TextInput, CheckboxInput } from "./TextInput";
 import { FormProvider } from "./FormCtx";
 
 const propTypes = {
@@ -25,6 +25,9 @@ const Form = forwardRef(({ children, context, ...props }, ref) => {
 });
 
 Form.TextInput = TextInput;
+Form.CheckboxInput = CheckboxInput;
+Form.TextArea = TextArea;
+Form.TextAreaX = TextAreaX;
 
 Form.propTypes = propTypes;
 
