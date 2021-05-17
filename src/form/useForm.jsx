@@ -7,8 +7,20 @@ export default function useForm(defaultValues = {}) {
     const setValue = (key, value) => {
         setValues({ ...values, [key]: value });
     };
-    const handleChange = (e) => {
-        setValue(e.target.name, e.target.value);
+
+    const toggleCheck = (e) => {
+        const { name } = e.target;
+        return setValue(name, !values[name]);
     };
-    return { values, handleChange, setValue, setValues, errors, setErrors };
+
+    const handleChange = (e) => {
+        switch (e.target.type) {
+            case "checkbox":
+                return toggleCheck(e);
+
+            default:
+                return setValue(e.target.name, e.target.value);
+        }
+    };
+    return { values, handleChange, toggleCheck, setValue, setValues, errors, setErrors };
 }
