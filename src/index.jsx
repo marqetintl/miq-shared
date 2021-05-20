@@ -6,6 +6,7 @@ export { default as useForm } from "./form/useForm";
 // COMPONENTS
 export { Portal } from "./components/Modal";
 export { default as Modal } from "./components/Modal";
+export { default as Calendar } from "./calendar/";
 
 // INPUTS
 export { default as TextareaX } from "./components/inputs/TextareaX";
