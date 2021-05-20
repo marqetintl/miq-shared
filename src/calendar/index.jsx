@@ -3,12 +3,17 @@ import PropTypes from "prop-types";
 
 import "./style.scss";
 import { getMonthDates, getWeekDates, WEEKDAYS } from "./utils";
+import { getClassName } from "../utils";
 
 const CalendarCtx = createContext();
 
+const propTypes = {
+    view: PropTypes.oneOf(["week", "month"]),
+};
+
 export default function Calendar(props) {
-    const [view, setView] = useState("month");
-    const { id, ...rest } = props;
+    const [view, setView] = useState(props.view || "month");
+    const { id, className, ...rest } = props;
 
     const context = useMemo(() => {
         return { ...rest };
@@ -27,10 +32,11 @@ export default function Calendar(props) {
 
     return (
         <CalendarCtx.Provider value={context}>
-            <div id={id} className={`Calendar`}>
+            <div id={id} className={getClassName(["miq-calendar", className])}>
                 <div className="Toolbar">
                     <select
                         name="view"
+                        value={view}
                         onChange={({ target }) => {
                             setView(target.value);
                         }}
@@ -45,6 +51,8 @@ export default function Calendar(props) {
         </CalendarCtx.Provider>
     );
 }
+
+Calendar.propTypes = propTypes;
 
 const Month = (props) => {
     const { datesByWeek = [] } = getMonthDates();
@@ -92,9 +100,20 @@ Week.propTypes = {
 };
 
 const DateWrapper = (props) => {
-    const { dt } = props;
+    const { dt, context = {} } = props;
 
-    return <div className="Date">{dt.getDate()}</div>;
+    const handleDateClick = (e) => {
+        const { onDateClick } = context;
+        if (!onDateClick) return;
+
+        onDateClick({ event: e, date: dt });
+    };
+
+    return (
+        <div className="Date" onClick={handleDateClick}>
+            {dt.getDate()}
+        </div>
+    );
 };
 
 DateWrapper.propTypes = {

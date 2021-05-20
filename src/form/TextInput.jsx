@@ -31,7 +31,7 @@ const withInput = (Component, args = {}) => {
 };
 
 export const TextInput = withInput("input", { className: "input" });
-CheckboxInput.propTypes = {
+TextInput.propTypes = {
     id: PropTypes.string,
     className: PropTypes.string,
     value: PropTypes.string,

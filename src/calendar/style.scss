@@ -1,19 +1,25 @@
-.Calendar {
-    .Dates,
-    .Weekdays {
-        display: grid;
-        grid-template-columns: repeat(7, 1fr);
-        text-align: center;
-    }
+@mixin grid-display {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.miq-calendar {
     .Week {
         padding-top: 4px;
         padding-bottom: 4px;
     }
 
     .Dates {
+        @include grid-display;
+        text-align: center;
+
         .Date {
             padding: 2px;
             cursor: pointer;
         }
+    }
+    .Weekdays {
+        @include grid-display;
+        text-align: center;
     }
 }

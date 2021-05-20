@@ -18,8 +18,6 @@ export const getMonthDates = (curDate) => {
         nextDate = new Date(fDate);
         nextDate.setDate(fDate.getDate() + i);
 
-        console.log(i, nextDate.getMonth());
-
         datesByWeek = [...datesByWeek, getWeekDates(nextDate)];
     }
 
