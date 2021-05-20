@@ -1,0 +1,19 @@
+.Calendar {
+    .Dates,
+    .Weekdays {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        text-align: center;
+    }
+    .Week {
+        padding-top: 4px;
+        padding-bottom: 4px;
+    }
+
+    .Dates {
+        .Date {
+            padding: 2px;
+            cursor: pointer;
+        }
+    }
+}
