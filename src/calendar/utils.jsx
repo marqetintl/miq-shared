@@ -1,3 +1,13 @@
+import { isDate } from "lodash";
+import { formatDateToStr } from "../utils";
+
+export const dateIsToday = (date) => dateEquals(date, new Date());
+
+export const dateEquals = (date1, date2) => {
+    if (!isDate(date1) || !isDate(date2)) return false;
+    return formatDateToStr(date1) === formatDateToStr(date2);
+};
+
 export const getMonthDates = (curDate) => {
     if (!isValidDate(curDate)) {
         curDate = new Date(); // Today

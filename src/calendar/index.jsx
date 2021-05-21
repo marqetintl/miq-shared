@@ -2,8 +2,8 @@ import React, { createContext, useMemo, useState } from "react";
 import PropTypes from "prop-types";
 
 import "./style.scss";
-import { getMonthDates, getWeekDates, WEEKDAYS } from "./utils";
-import { getClassName } from "../utils";
+import { dateEquals, dateIsToday, getMonthDates, getWeekDates, WEEKDAYS } from "./utils";
+import { formatDate, getClassName } from "../utils";
 
 const CalendarCtx = createContext();
 
@@ -16,8 +16,8 @@ export default function Calendar(props) {
     const { id, className, ...rest } = props;
 
     const context = useMemo(() => {
-        return { ...rest };
-    }, [rest]);
+        return { ...rest, view };
+    }, [rest, view]);
 
     let Component = Month;
     switch (view) {
@@ -77,16 +77,13 @@ Month.propTypes = {
 };
 
 const Week = (props) => {
-    const { curDate, view = "month" } = props;
-    const dates = getWeekDates(curDate);
+    const dates = getWeekDates(props.curDate);
 
     return (
         <div className="Week">
-            {view === "week" && <Weekdays context={props.context} />}
-
             <div className="Dates">
                 {dates.map((dt) => {
-                    return <DateWrapper dt={dt} context={props.context} key={dt.toString()} />;
+                    return <DateWrapper {...{ dt }} context={props.context} key={dt.toString()} />;
                 })}
             </div>
         </div>
@@ -102,22 +99,33 @@ Week.propTypes = {
 const DateWrapper = (props) => {
     const { dt, context = {} } = props;
 
+    const isToday = dateIsToday(dt);
+    const isCurrent = dateEquals(dt, context.selected);
+
     const handleDateClick = (e) => {
         const { onDateClick } = context;
         if (!onDateClick) return;
 
-        onDateClick({ event: e, date: dt });
+        onDateClick({ event: e, date: dt, isToday });
     };
 
     return (
-        <div className="Date" onClick={handleDateClick}>
-            {dt.getDate()}
+        <div
+            className={getClassName(["day", isToday && "today", isCurrent && "current"])}
+            onClick={handleDateClick}
+            role="button"
+        >
+            {context.view === "week" && (
+                <div className="day-weekday">{formatDate(dt, { weekday: "short" })}</div>
+            )}
+            <div className="day-date">{dt.getDate()}</div>
         </div>
     );
 };
 
 DateWrapper.propTypes = {
     dt: PropTypes.instanceOf(Date).isRequired,
+    context: PropTypes.object,
 };
 
 const Weekdays = (prop) => {

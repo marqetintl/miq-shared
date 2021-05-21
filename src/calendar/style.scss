@@ -13,9 +13,32 @@
         @include grid-display;
         text-align: center;
 
-        .Date {
+        .day {
             padding: 2px;
             cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            //
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            margin: 0 auto;
+            background-color: #eee;
+
+            &.today {
+                background-color: rgb(232, 240, 254);
+            }
+            &.current {
+                color: rgb(25, 103, 210);
+                background-color: rgb(232, 240, 254);
+            }
+
+            &-weekday {
+            }
+            &-date {
+            }
         }
     }
     .Weekdays {
