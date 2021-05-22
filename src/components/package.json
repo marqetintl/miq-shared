@@ -1,6 +1,10 @@
 {
     "name": "@miq/components",
     "version": "1.0.0",
-    "main": "index.js",
-    "license": "MIT"
+    "main": "index.jsx",
+    "license": "MIT",
+    "dependencies": {
+        "@miq/utils": "1.0.0",
+        "lodash": "^4.17.21"
+    }
 }

@@ -1,5 +1,5 @@
 import { isDate } from "lodash";
-import { formatDateToStr } from "../utils";
+import { formatDateToStr } from "@miq/utils";
 
 export const dateIsToday = (date) => dateEquals(date, new Date());
 

@@ -9,6 +9,7 @@ const CalendarCtx = createContext();
 
 const propTypes = {
     view: PropTypes.oneOf(["week", "month"]),
+    DateComponent: PropTypes.elementType,
 };
 
 export default function Calendar(props) {
@@ -101,6 +102,10 @@ const DateWrapper = (props) => {
 
     const isToday = dateIsToday(dt);
     const isCurrent = dateEquals(dt, context.selected);
+
+    const { DateComponent } = context;
+
+    if (DateComponent) return <DateComponent {...props} {...{ isToday, isCurrent }} />;
 
     const handleDateClick = (e) => {
         const { onDateClick } = context;

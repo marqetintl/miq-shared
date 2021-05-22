@@ -1,9 +1,10 @@
 {
-    "name": "@miq/calendar",
+    "name": "@miq/form",
     "version": "1.0.0",
     "main": "index.jsx",
     "license": "MIT",
     "dependencies": {
+        "@miq/components": "1.0.0",
         "@miq/utils": "1.0.0",
         "lodash": "^4.17.21"
     }

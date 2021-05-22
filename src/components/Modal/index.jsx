@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 
-import { getClassName } from "../../utils";
+import { getClassName } from "@miq/utils";
 
 import "./modal.scss";
 

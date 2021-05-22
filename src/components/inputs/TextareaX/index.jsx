@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
 import "./textareax.scss";
-import { getClassName } from "../../../utils";
+import { getClassName } from "@miq/utils";
 
 const { forwardRef } = require("react");
 

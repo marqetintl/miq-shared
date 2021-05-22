@@ -2,7 +2,7 @@ import React, { forwardRef, useContext } from "react";
 import PropTypes from "prop-types";
 
 import TextareaX from "../components/inputs/TextareaX";
-import { getClassName, isRequired, IS_DEV } from "../utils";
+import { getClassName, isRequired, IS_DEV } from "@miq/utils";
 import FormCtx from "./FormCtx";
 
 const withInput = (Component, args = {}) => {
