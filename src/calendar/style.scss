@@ -1,3 +1,7 @@
+@use './datepicker';
+
+$bg-gray: #eee;
+
 @mixin grid-display {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -25,7 +29,7 @@
             width: 32px;
             height: 32px;
             margin: 0 auto;
-            background-color: #eee;
+            background-color: $bg-gray;
 
             &.today {
                 background-color: rgb(232, 240, 254);
@@ -45,5 +49,21 @@
     .Weekdays {
         @include grid-display;
         text-align: center;
+    }
+
+    .icon-btn {
+        cursor: pointer;
+        width: 32px;
+        height: 32px;
+        border-radius: 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: $bg-gray;
+
+        svg {
+            height: 18px;
+            width: 18px;
+        }
     }
 }

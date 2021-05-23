@@ -14,9 +14,9 @@ export const IconButton = ({ Icon, label, ...props }) => {
     if (!Icon) return null;
 
     return (
-        <button title={label} {...rest} className={getClassName(["IconButton", props.className])}>
-            <Icon className="Icon" height={maxSize} width={maxSize} />
-            {label && <span className="Label">{label}</span>}
+        <button title={label} {...rest} className={getClassName(["btn btn-icon", props.className])}>
+            <Icon className="icon" height={maxSize} width={maxSize} />
+            {label && <span className="label">{label}</span>}
         </button>
     );
 };
@@ -26,9 +26,9 @@ export const IconNavLink = ({ Icon, label, ...props }) => {
     if (!Icon || !props.to) return null;
 
     return (
-        <NavLink {...props} className={getClassName(["IconButton", props.className])}>
-            <Icon className="Icon" />
-            {label && <span className="Label">{label}</span>}
+        <NavLink {...props} className={getClassName(["btn btn-icon", props.className])}>
+            <Icon className="icon" />
+            {label && <span className="label">{label}</span>}
         </NavLink>
     );
 };

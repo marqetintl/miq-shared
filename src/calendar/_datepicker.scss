@@ -1,0 +1,21 @@
+.miq-datepicker {
+    &-toolbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &-month {
+        flex-grow: 1;
+    }
+
+    &-body {
+        position: absolute;
+
+        .miq-datepicker-content {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}

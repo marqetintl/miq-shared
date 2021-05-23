@@ -16,22 +16,28 @@ export const getMonthDates = (curDate) => {
     const curYear = curDate.getFullYear();
     const curMonth = curDate.getMonth();
 
-    const fDate = new Date(curYear, curMonth, 1);
+    const firstDate = new Date(curYear, curMonth, 1);
+    const lastDate = new Date(curYear, curMonth + 1, 0);
     let datesByWeek = [];
 
-    let nextDate = new Date(fDate);
+    let nextDate = new Date(firstDate);
     for (
         let i = 0;
-        nextDate.getMonth() === curMonth && nextDate.getFullYear() === curYear && i < 32;
+        nextDate.getMonth() === curMonth && nextDate.getFullYear() === curYear;
         i = i + 7
     ) {
-        nextDate = new Date(fDate);
-        nextDate.setDate(fDate.getDate() + i);
+        nextDate = new Date(firstDate);
+        nextDate.setDate(firstDate.getDate() + i);
+        const week = getWeekDates(nextDate);
 
-        datesByWeek = [...datesByWeek, getWeekDates(nextDate)];
+        if (week.firstDate > lastDate) {
+            break;
+        }
+
+        datesByWeek = [...datesByWeek, week];
     }
 
-    return { datesByWeek };
+    return { weeks: datesByWeek, firstDate, lastDate };
 };
 
 export const getWeekDates = (currDate) => {
@@ -40,17 +46,17 @@ export const getWeekDates = (currDate) => {
     }
 
     const offset = currDate.getDate() - currDate.getDay();
-    const fDate = new Date(currDate);
-    fDate.setDate(offset);
+    const firstDate = new Date(currDate);
+    firstDate.setDate(offset);
 
     const dates = [];
     for (let i = 0; i < 7; i++) {
-        const date = new Date(fDate);
-        const nextDate = fDate.getDate() + i;
+        const date = new Date(firstDate);
+        const nextDate = firstDate.getDate() + i;
         date.setDate(nextDate);
         dates.push(date);
     }
-    return [...dates];
+    return { dates: [...dates], firstDate, lastDate: dates.slice(-1)[0] };
 };
 
 export const isValidDate = (date) =>
