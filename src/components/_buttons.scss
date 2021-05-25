@@ -1,0 +1,17 @@
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border-color: transparent;
+    cursor: pointer;
+
+    // &-icon {
+
+    // }
+
+    .icon {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+}

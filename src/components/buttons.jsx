@@ -14,7 +14,12 @@ export const IconButton = ({ Icon, label, ...props }) => {
     if (!Icon) return null;
 
     return (
-        <button title={label} {...rest} className={getClassName(["btn btn-icon", props.className])}>
+        <button
+            title={label}
+            type="button"
+            {...rest}
+            className={getClassName(["btn btn-icon", props.className])}
+        >
             <Icon className="icon" height={maxSize} width={maxSize} />
             {label && <span className="label">{label}</span>}
         </button>
