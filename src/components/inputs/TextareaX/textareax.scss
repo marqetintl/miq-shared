@@ -13,6 +13,16 @@ $min-height: 44px;
     min-height: $min-height;
     position: relative;
 
+    &.clear-focus {
+        textarea {
+            &:focus {
+                box-shadow: none;
+                border: 1px solid transparent;
+                outline: none;
+            }
+        }
+    }
+
     &-input {
         position: absolute;
         top: 0;
@@ -24,18 +34,15 @@ $min-height: 44px;
             @include input;
 
             position: relative;
-
             display: block;
-            // border: 0;
             overflow: hidden;
-            // overflow: auto;
             resize: none;
-
             -webkit-box-sizing: border-box;
             -moz-box-sizing: border-box;
             box-sizing: border-box;
+            border: 1px solid transparent;
 
-            // border: 1px solid transparent;
+            // overflow: auto;
         }
     }
 

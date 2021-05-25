@@ -20,14 +20,15 @@ const propTypes = {
 
     style: PropTypes.object,
     placeholder: PropTypes.string,
+    clearFocus: PropTypes.bool,
 };
 
 const TextareaX = forwardRef((props, ref) => {
-    const { id, value, onChange, placeholder = "Start typing ...", ...rest } = props;
+    const { id, clearFocus, value, onChange, placeholder = "Start typing ...", ...rest } = props;
     const style = props.style;
 
     return (
-        <div id={id} className={getClassName(["textareax"])}>
+        <div id={id} className={getClassName(["textareax", clearFocus && "clear-focus"])}>
             <span className="textareax-mirror" {...{ style }}>{`${value}\n`}</span>
 
             <div className="textareax-input">
