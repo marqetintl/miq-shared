@@ -1,7 +1,5 @@
-import PropTypes from "prop-types";
-
 import { useEffect, useState, createContext } from "react";
-import { getSharedData } from "./utils";
+import { getSharedData } from "@miq/utils";
 
 export const SharedDataCtx = createContext();
 
