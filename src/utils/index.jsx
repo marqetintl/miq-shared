@@ -94,6 +94,12 @@ export const getSharedData = () =>
         return resolve({});
     });
 
+/**
+ *
+ * @param {Array} df
+ * @returns {String}
+ */
+
 export const getClassName = (df = []) => {
     let className;
     if (Array.isArray(df)) {
@@ -103,6 +109,22 @@ export const getClassName = (df = []) => {
             .join(" ");
     }
     return className;
+};
+
+/**
+ *
+ * @param {String} src
+ * @returns {String}
+ */
+
+export const getImgUrl = (src) => {
+    if (IS_DEV && src) {
+        const domain = new URL(DOMAIN);
+        if (!src.includes("http")) {
+            src = `${domain.origin}${src}`;
+        }
+    }
+    return src;
 };
 
 export const addForwardSlash = (str = isRequired("string param")) =>

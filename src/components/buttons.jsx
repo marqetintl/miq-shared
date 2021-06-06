@@ -2,6 +2,8 @@ import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 import { getClassName } from "@miq/utils";
 
+// import "./buttons.scss";
+
 const propTypes = {
     label: PropTypes.string,
     title: PropTypes.string,
