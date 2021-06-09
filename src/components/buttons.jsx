@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 import { getClassName } from "@miq/utils";
 
-// import "./buttons.scss";
+import "./buttons.scss";
 
 const propTypes = {
     label: PropTypes.string,
@@ -16,12 +16,7 @@ export const IconButton = ({ Icon, label, ...props }) => {
     if (!Icon) return null;
 
     return (
-        <button
-            title={label}
-            type="button"
-            {...rest}
-            className={getClassName(["btn btn-icon", props.className])}
-        >
+        <button title={label} type="button" {...rest} className={getClassName(["btn btn-icon", props.className])}>
             <Icon className="icon" height={maxSize} width={maxSize} />
             {label && <span className="label">{label}</span>}
         </button>

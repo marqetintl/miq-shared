@@ -1,14 +1,15 @@
 .btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background-color: transparent;
     border-color: transparent;
     cursor: pointer;
 
-    // &-icon {
+    &-icon {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
 
-    // }
+        // justify-content: center;
+    }
 
     .icon {
         width: 1.5rem;
