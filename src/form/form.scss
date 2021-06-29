@@ -1,13 +1,16 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@use "@miq/utils/src/style/variables" as vars;
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.miq-input {
+    display: block;
+    width: 100%;
+    padding: vars.$input-padding;
+    font-size: vars.$input-font-size;
+    font-weight: 400;
+    border: 1px solid vars.$input-border-color;
+    line-height: 1.5;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: vars.$input-border-radius;
+    box-sizing: border-box;
 }
