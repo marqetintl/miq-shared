@@ -8,4 +8,13 @@ export { ImgPlaceholderDiv } from "./Image";
 export { default as Img } from "./Image";
 
 //
-export { IconButton, IconNavLink } from "./buttons";
+export * from "./Collapse";
+export * from "./buttons";
+export * as Icons from "./icons";
+
+//
+export { default as Table } from "./Table/";
+
+//
+export * from "./Masonry";
+// export { defaut as Masonry } from "./Masonry/";
