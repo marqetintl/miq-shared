@@ -3,11 +3,9 @@ import React from "react";
 import { IconButton } from "./buttons";
 
 export default {
-    title: "Components/Buttons",
+    title: "@components/IconButton",
     component: IconButton,
-    argTypes: {
-        backgroundColor: { control: "color" },
-    },
+    argTypes: {},
 };
 
 const Icon = () => (
@@ -26,19 +24,19 @@ const Icon = () => (
 
 const Template = (args) => <IconButton {...args} />;
 
-export const IconOnly = Template.bind({});
-IconOnly.args = {
+export const IconButtonOnly = Template.bind({});
+IconButtonOnly.args = {
     Icon,
 };
 
-export const IconLabel = Template.bind({});
-IconLabel.args = {
+export const IconButtonLabel = Template.bind({});
+IconButtonLabel.args = {
     Icon,
     label: "It's time",
 };
 
-export const IconLabelFirst = Template.bind({});
-IconLabelFirst.args = {
+export const IconButtonLabelFirst = Template.bind({});
+IconButtonLabelFirst.args = {
     Icon,
     label: "It's time",
     className: "label-first",

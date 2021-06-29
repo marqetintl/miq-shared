@@ -3,6 +3,14 @@
     border-color: transparent;
     cursor: pointer;
 
+    &.label-first {
+        flex-direction: row-reverse;
+        .label {
+            margin-right: 6px;
+            margin-left: 0;
+        }
+    }
+
     &-icon {
         display: flex;
         align-items: center;
@@ -14,5 +22,9 @@
     .icon {
         width: 1.5rem;
         height: 1.5rem;
+    }
+
+    .label {
+        margin-left: 6px;
     }
 }
