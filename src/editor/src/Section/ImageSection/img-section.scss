@@ -1,0 +1,30 @@
+// @use '../../../scss/variables' as vars;
+
+.section-img {
+    .section-preview {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #aaa;
+        cursor: pointer;
+
+        img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+
+        &.empty {
+            min-height: 200px;
+        }
+
+        &:hover {
+            // color: vars.$color-primary-2;
+        }
+
+        .img-placeholder {
+            min-height: 50px;
+        }
+    }
+}
