@@ -1,0 +1,23 @@
+.dms-collapse {
+    &-body {
+        &.floating {
+            position: fixed;
+        }
+        // z-index: 10800;
+
+        .inner {
+            overflow-x: hidden;
+
+            max-height: 250px;
+            box-sizing: border-box;
+            margin: 0;
+            position: relative;
+            width: inherit;
+            padding: 0.5rem 0;
+            max-width: inherit;
+            border-radius: 6px;
+            background-color: white;
+            // width: 100%;
+        }
+    }
+}
