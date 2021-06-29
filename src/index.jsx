@@ -1,4 +1,3 @@
-import "./scss/main.scss";
 
 // FORM
 export { default as Form } from "./form/";
