@@ -1,1 +1,0 @@
-# miq Admin Components
