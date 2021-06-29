@@ -1,10 +1,9 @@
 {
     "name": "@miq/utils",
     "version": "1.0.0",
-    "main": "index.jsx",
+    "main": "src/index.jsx",
     "license": "MIT",
     "dependencies": {
-        "@miq/utils": "1.0.0",
         "axios": "^0.21.1",
         "lodash": "^4.17.21"
     }
