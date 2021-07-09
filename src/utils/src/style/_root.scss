@@ -1,0 +1,54 @@
+@use 'variables' as *;
+
+:root {
+    --clr-primary: var(--blue-500);
+    --clr-secondary: var(--gray-500);
+
+    // SPACES
+    @each $level, $value in $spaces {
+        --sp-#{$level}: #{$value};
+    }
+
+    --sp-input-x: 0.75rem;
+    --sp-input-y: 0.375rem;
+
+    // FONT TYPES
+
+    --ff: "Roboto", sans-serif;
+    --ff-heading: "Montserrat", sans-serif;
+    // --font-family-heading: "Poppins", sans-serif;
+
+    // FONT SIZES
+
+    --fs: 1rem;
+    --fs-xs: 0.512rem;
+    --fs-sm: 0.8rem;
+    --fs-md: 1.25rem;
+    --fs-lg: 1.563rem;
+    --fs-xl: 1.953rem;
+    --fs-xxl: 2.441rem;
+    --fs-xxxl: 3.052rem;
+
+    --fs-nav: 0.65rem;
+    --fs-input: 14px;
+
+    // BORDERS
+
+    --border-color: #{$border-color};
+
+    --border-radius: 6px;
+    --border-radius-md: 12px;
+    --border-radius-lg: 24px;
+
+    --border-radius-input: 0.35rem;
+
+    // ICONS
+
+    --icon-size: #{$icon-size};
+
+    @each $name, $values in $colors {
+        @each $level, $color in $values {
+            --#{$name}-#{$level}: #{$color};
+        }
+    }
+}

@@ -16,7 +16,7 @@ const propTypes = {
 export const Button = forwardRef(({ children, ...props }, ref) => {
     const { type = "button" } = props;
     return (
-        <button {...props} {...{ type }} className={getClassName(["btn", props.className])}>
+        <button {...props} {...{ type }} className={getClassName(["btn", props.className])} ref={ref}>
             {children}
         </button>
     );
@@ -38,8 +38,9 @@ const IBPropTypes = {
  * @returns
  */
 export const IconButton = ({ Icon, label, ...props }) => {
-    const { maxSize, labelFirst, primary, secondary, ...rest } = props;
     if (!Icon) return null;
+
+    const { maxSize, labelFirst, primary, secondary, ...rest } = props;
 
     return (
         <button
@@ -47,7 +48,12 @@ export const IconButton = ({ Icon, label, ...props }) => {
             aria-label={props.title || props.label}
             type="button"
             {...rest}
-            className={getClassName(["btn btn-icon", primary ? "primary" : secondary && "secondary", props.className])}
+            className={getClassName([
+                "btn",
+                label ? "btn-icon-label" : "btn-icon",
+                primary ? "btn-primary" : secondary && "btn-secondary",
+                props.className,
+            ])}
         >
             <Icon className="icon" height={maxSize} width={maxSize} />
             {label && <span className="label">{label}</span>}
@@ -63,9 +69,18 @@ IconButton.propTypes = IBPropTypes;
  */
 export const IconNavLink = ({ Icon, label, ...props }) => {
     if (!Icon || !props.to) return null;
+    const { maxSize, labelFirst, primary, secondary, ...rest } = props;
 
     return (
-        <NavLink {...props} className={getClassName(["btn btn-icon", props.className])}>
+        <NavLink
+            {...rest}
+            className={getClassName([
+                "btn",
+                label ? "btn-icon-label" : "btn-icon",
+                primary ? "btn-primary" : secondary && "btn-secondary",
+                props.className,
+            ])}
+        >
             <Icon className="icon" />
             {label && <span className="label">{label}</span>}
         </NavLink>

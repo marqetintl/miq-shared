@@ -1,5 +1,3 @@
-@use "@miq/utils/src/style/variables" as vars;
-
 $min-height: 44px;
 
 @mixin input {
@@ -7,8 +5,8 @@ $min-height: 44px;
     min-height: $min-height;
     // width: 100%; watch out for this as it causes overflow
     height: 100%;
-    padding: 2px;
-    font-size: vars.$input-font-size;
+    padding: var(--sp-input-y) var(--sp-input-x);
+    font-size: var(--fs-input);
     font-weight: 400;
     // font-family: inherit;
 }
@@ -45,7 +43,8 @@ $min-height: 44px;
             -webkit-box-sizing: border-box;
             -moz-box-sizing: border-box;
             box-sizing: border-box;
-            border: 1px solid transparent;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-input);
 
             // overflow: auto;
         }

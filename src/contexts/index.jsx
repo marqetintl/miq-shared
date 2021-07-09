@@ -21,6 +21,8 @@ export const SharedDataProvider = ({ children }) => {
             });
     }, [path]);
 
+    if (!value.isLoaded) return <div>Loading ...</div>;
+
     return <SharedDataCtx.Provider value={value}>{children}</SharedDataCtx.Provider>;
 };
 

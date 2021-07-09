@@ -8,7 +8,7 @@ import FormCtx from "./FormCtx";
 
 const withInput = (Component, args = {}) => {
     return forwardRef((props, ref) => {
-        props = { ...args, ...props };
+        // props = { ...args, ...props };
         const ctx = useContext(FormCtx) || isRequired("FormCtx");
         const { name = isRequired("name prop") } = props;
         let { value, checked } = props;

@@ -1,0 +1,26 @@
+.miq-masonry-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 1px;
+
+    .miq-masonry-img {
+        // width: 250px;
+        // height: auto;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        // object-fit: contain;
+    }
+}
+
+.miq-masonry-column {
+    // complains
+    columns: 4 125px;
+    column-gap: 2px;
+
+    .miq-masonry-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}

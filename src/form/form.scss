@@ -1,16 +1,12 @@
-@use "@miq/utils/src/style/variables" as vars;
-
 .miq-input {
     display: block;
     width: 100%;
-    padding: vars.$input-padding;
-    font-size: vars.$input-font-size;
+    padding: var(--sp-input-y) var(--sp-input-x);
+    font-size: var(--fs-input);
     font-weight: 400;
-    border: 1px solid vars.$input-border-color;
+    border: 1px solid var(--border-color);
     line-height: 1.5;
-    -webkit-appearance: none;
-    -moz-appearance: none;
     appearance: none;
-    border-radius: vars.$input-border-radius;
+    border-radius: var(--border-radius-input);
     box-sizing: border-box;
 }

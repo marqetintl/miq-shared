@@ -27,6 +27,7 @@ const Form = forwardRef(({ children, context, ...props }, ref) => {
     );
 });
 
+Form.Submit = (props) => <input {...props} type="submit" />;
 Form.Label = Label;
 Form.TextInput = TextInput;
 Form.CheckboxInput = CheckboxInput;
