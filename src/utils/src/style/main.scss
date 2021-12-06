@@ -1,47 +1,29 @@
-// @import "./variables";
-
-@use './index';
+@use './index' as *;
 @use './margin';
 @use './root';
 
-// @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200,900&family=Roboto:wght@300,900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200..900&family=Roboto:wght@400;900&display=swap");
-
 // FLEX
 
-.d-flex {
-    display: flex;
+$display: (
+    flex: flex,
+    grid: grid,
+    block: block,
+);
+
+@each $key, $value in $display {
+    .d-#{$key} {
+        display: $value;
+    }
 }
 
-.flex-1 {
-    // flex: 1;
-    flex-basis: 100%;
-}
+.miq-container {
+    max-width: map-get($map: $breakpoints, $key: md);
+    margin: 0 auto;
 
-.d-block {
-    display: block;
-}
-
-.align-items-center {
-    align-items: center;
-}
-
-.justify-content-between {
-    justify-content: space-between;
-}
-
-.border-0 {
-    border: 0;
-}
-
-.text-muted {
-    color: var(--gray-600);
-}
-
-// COLOR
-
-.bg-white {
-    background-color: white;
+    &-fluid {
+        margin: 0;
+        max-width: 100%;
+    }
 }
 
 .bg-primary {
@@ -52,46 +34,4 @@
     &:hover {
         background-color: var(--primary-500);
     }
-}
-
-// RESET
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body,
-html {
-    font-family: var(--ff);
-    font-size: var(--font-size);
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-family: var(--ff-heading);
-}
-
-h1 {
-    font-size: var(--heading-xxl);
-}
-h2 {
-    font-size: var(--heading-xl);
-}
-h3 {
-    font-size: var(--heading-lg);
-}
-h4 {
-    font-size: var(--heading-md);
-}
-h5 {
-    font-size: var(--heading-sm);
-}
-h6 {
-    font-size: var(--heading-sx);
 }

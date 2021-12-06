@@ -1,0 +1,30 @@
+.miq-collapse-header {
+  margin-bottom: var(--sp-0);
+}
+
+.miq-collapse-body {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+
+  &.floating {
+    position: relative;
+
+    .inner {
+      position: absolute;
+    }
+  }
+}
+
+.miq-collapse-body .inner {
+  overflow-x: hidden;
+
+  // max-height: 250px;
+  box-sizing: border-box;
+  margin: 0;
+  width: inherit;
+  padding: 0.5rem 0;
+  max-width: inherit;
+  border-radius: 6px;
+  background-color: white;
+}

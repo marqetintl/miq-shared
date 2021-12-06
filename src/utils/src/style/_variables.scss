@@ -44,6 +44,21 @@ $spaces: (
 
 //
 
+$grid-cols: 12;
+
+//
+
+$breakpoints: (
+    xs: 0,
+    sm: 640px,
+    md: 768px,
+    lg: 1024px,
+    xl: 1280px,
+    xxl: 1536px,
+);
+
+//
+
 $icon-size: 1.25rem;
 
 //
@@ -53,3 +68,5 @@ $border-color: #ced4da !default;
 //
 
 $input-border-radius: 0.35rem !default;
+
+//

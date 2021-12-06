@@ -1,5 +1,46 @@
+@use './variables' as *;
+
+@mixin xs-screen {
+    @media (max-width: map-get($map: $breakpoints, $key: sm)) {
+        @content;
+    }
+}
+
+@mixin sm-screen {
+    // @media (max-width: map-get($map: $breakpoints, $key: md)) and (min-width: map-get($map: $breakpoints, $key: sm)) {
+    @media (min-width: map-get($map: $breakpoints, $key: sm)) {
+        @content;
+    }
+}
+
 @mixin md-screen {
-    @media (max-width: 800px) {
+    // @media (max-width: map-get($map: $breakpoints, $key: lg)) and (min-width: map-get($map: $breakpoints, $key: md)) {
+    @media (min-width: map-get($map: $breakpoints, $key: md)) {
+        @content;
+    }
+}
+
+@mixin md-down {
+    @media (max-width: map-get($map: $breakpoints, $key: md)) {
+        @content;
+    }
+}
+
+@mixin lg-screen {
+    // @media (max-width: map-get($map: $breakpoints, $key: xl)) and (min-width: map-get($map: $breakpoints, $key: lg)) {
+    @media (min-width: map-get($map: $breakpoints, $key: lg)) {
+        @content;
+    }
+}
+@mixin xl-screen {
+    // @media (max-width: map-get($map: $breakpoints, $key: xxl)) and (min-width: map-get($map: $breakpoints, $key: xl)) {
+    @media (min-width: map-get($map: $breakpoints, $key: xl)) {
+        @content;
+    }
+}
+
+@mixin xxl-screen {
+    @media (min-width: map-get($map: $breakpoints, $key: xxl)) {
         @content;
     }
 }

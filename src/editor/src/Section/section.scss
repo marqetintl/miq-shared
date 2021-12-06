@@ -9,78 +9,78 @@ $header-footer-bg-color: #fff;
 // rgba(114, 186, 94, 0.05);
 
 .section {
-    border: 1px solid $border-color;
-    border-radius: 6px;
-    overflow: visible;
-    display: block;
-    height: 100%;
+  border: 1px solid $border-color;
+  border-radius: 6px;
+  overflow: visible;
+  display: block;
+  height: 100%;
+  padding: 0.5rem;
+
+  margin: 2rem auto;
+
+  &:hover {
+    // border: 1px solid vars.$color-primary-2;
+  }
+
+  &.active {
+    // border: 1px solid vars.$color-primary;
+  }
+
+  &-body {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+
+    .textareax {
+      padding-bottom: 1rem;
+    }
+  }
+
+  &-header,
+  &-footer {
+    z-index: 100;
+    position: sticky;
+    // position: -webkit-sticky;
     padding: 0.5rem;
+    // margin: 0 0.5rem;
+    background: $header-footer-bg-color;
+    border-radius: 0.5rem;
+    border: 1px solid $border-color;
+  }
 
-    margin: 2rem auto;
+  &-header {
+    top: 1rem;
 
-    &:hover {
-        // border: 1px solid vars.$color-primary-2;
-    }
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
-    &.active {
-        // border: 1px solid vars.$color-primary;
-    }
+  &-footer {
+    bottom: 1rem;
+    // background-color: #eee;
 
-    &-body {
-        padding-top: 1rem;
-        padding-bottom: 1rem;
+    .actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
 
-        .textareax {
-            padding-bottom: 1rem;
+      button {
+        // background-color: #fff;
+        padding: 6px;
+        border-radius: 6px;
+
+        &:hover {
+          // color: vars.$color-primary;
+          // background: vars.$color-primary-2;
         }
+      }
     }
+  }
 
-    &-header,
-    &-footer {
-        z-index: 100;
-        position: sticky;
-        position: -webkit-sticky;
-        padding: 0.5rem;
-        // margin: 0 0.5rem;
-        background: $header-footer-bg-color;
-        border-radius: 0.5rem;
-        border: 1px solid $border-color;
+  .section-btn {
+    svg {
+      width: 20px;
+      height: 20px;
     }
-
-    &-header {
-        top: 1rem;
-
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    &-footer {
-        bottom: 1rem;
-        // background-color: #eee;
-
-        .actions {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            button {
-                background-color: #fff;
-                padding: 6px;
-                border-radius: 6px;
-
-                &:hover {
-                    // color: vars.$color-primary;
-                    // background: vars.$color-primary-2;
-                }
-            }
-        }
-    }
-
-    .section-btn {
-        svg {
-            width: 20px;
-            height: 20px;
-        }
-    }
+  }
 }

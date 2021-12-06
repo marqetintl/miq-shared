@@ -1,0 +1,29 @@
+.miq-masonry-grid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(250px, 1fr))[auto-fill];
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 1px;
+}
+
+.miq-masonry-grid .miq-masonry-img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.miq-masonry-column {
+  -webkit-columns: 4 125px;
+          columns: 4 125px;
+  -webkit-column-gap: 2px;
+          column-gap: 2px;
+}
+
+.miq-masonry-column .miq-masonry-img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+/*# sourceMappingURL=main.css.map */

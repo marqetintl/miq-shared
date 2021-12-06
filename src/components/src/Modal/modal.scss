@@ -1,0 +1,131 @@
+/**
+miq-modal-container
+    miq-modal-background
+
+    miq-modal-inner
+        miq-modal-content
+            miq-modal-content-inner|miq-modal-content-inner-fullscreen
+                miq-modal-header
+                miq-modal-body
+                miq-modal-footer
+*/
+
+.miq-modal-content-inner {
+    & > :first-child {
+        border-top-left-radius: var(--border-radius, 6px);
+        border-top-right-radius: var(--border-radius, 6px);
+    }
+
+    & > :last-child {
+        border-bottom-left-radius: var(--border-radius, 6px);
+        border-bottom-right-radius: var(--border-radius, 6px);
+    }
+}
+
+.miq-modal-header,
+.miq-modal-footer {
+    background: #fff;
+    min-height: 25px;
+    margin: 0;
+    padding: 6px;
+}
+
+.miq-modal {
+    &-header {
+        position: sticky;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 150;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        overflow: hidden;
+
+        background: #fff;
+        background-size: cover;
+        background-position: 50%;
+        background-repeat: no-repeat;
+    }
+
+    &-body {
+        position: relative;
+        display: flex;
+        flex-grow: 1;
+        overflow: auto;
+        margin: 0;
+        background: #f1f3f4;
+        z-index: 200;
+    }
+
+    &-footer {
+        display: flex;
+        z-index: 150;
+        justify-content: center;
+        align-items: center;
+        border-top: 1px solid #ebeef0;
+    }
+}
+
+.miq-modal {
+    &-inner {
+        margin: 24px;
+        max-width: 100%;
+        width: 100%;
+        padding: 10px;
+        position: relative;
+        z-index: 100;
+
+        .miq-modal-content {
+            position: relative;
+            height: 100%;
+            padding: 0;
+            // background-clip: padding-box;
+            border-radius: 3px;
+
+            //
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            &-inner {
+                max-height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                box-shadow: 0 2.8px 2.2px rgb(0 0 0 / 2%), 0 6.7px 5.3px rgb(0 0 0 / 3%), 0 12.5px 10px rgb(0 0 0 / 4%),
+                    0 22.3px 17.9px rgb(0 0 0 / 4%), 0 41.8px 33.4px rgb(0 0 0 / 5%), 0 100px 80px rgb(0 0 0 / 7%);
+
+                &-fullscreen {
+                    height: 100%;
+                }
+            }
+        }
+    }
+
+    &-container {
+        position: absolute;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        top: 0;
+        height: 100vh;
+        overflow: auto;
+        display: flex;
+        justify-content: center;
+        z-index: 10000;
+    }
+}
+
+.miq-modal-background {
+    z-index: 50;
+    background: #15171a;
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 100vh;
+}

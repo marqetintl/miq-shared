@@ -1,0 +1,24 @@
+.img-gallery-horizontal {
+  overflow: auto;
+
+  &-inner {
+    width: auto;
+    display: flex;
+    align-items: center;
+  }
+
+  .gallery-item {
+    display: inline-block;
+    margin-right: 6px;
+
+    img {
+      object-fit: contain;
+      max-width: none;
+      display: block;
+      height: auto;
+      // max-height: calc(100vh - 100px);
+      max-height: 100vh;
+      width: auto;
+    }
+  }
+}

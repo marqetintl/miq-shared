@@ -1,0 +1,24 @@
+.miq-table {
+    border-collapse: collapse;
+
+    &.w-100 {
+        width: 100%;
+    }
+
+    &.layout-fixed {
+        table-layout: fixed;
+    }
+
+    &.layout-auto {
+        table-layout: auto;
+    }
+
+    th,
+    td {
+        padding: var(--sp-1, 1rem);
+    }
+
+    tbody tr:last-child {
+        border-bottom: none;
+    }
+}

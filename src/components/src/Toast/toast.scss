@@ -1,0 +1,47 @@
+.miq-toast-item {
+    display: flex;
+    position: relative;
+    z-index: 10000;
+    margin-bottom: 4px;
+    border-radius: var(--border-radius);
+    padding: var(--sp-0);
+
+    &.info {
+        border: 1px solid var(--blue-200, blue);
+        background-color: var(--blue-50, blue);
+    }
+
+    &.success {
+        border: 1px solid var(--green-200, green);
+        background-color: var(--green-50, green);
+    }
+
+    &.warning {
+        border: 1px solid var(--orange-200, orange);
+        background-color: var(--orange-50, orange);
+    }
+
+    &.error {
+        border: 1px solid var(--red-200, red);
+        background-color: var(--red-50, red);
+    }
+}
+
+.miq-toast-items {
+    position: fixed;
+    margin: var(--sp-3, 1rem);
+    max-height: 50vh;
+    overflow-y: auto;
+
+    &.top,
+    &.bottom {
+        &-right {
+            right: 0;
+        }
+    }
+
+    &.bottom-right,
+    &.bottom-left {
+        bottom: 0;
+    }
+}
