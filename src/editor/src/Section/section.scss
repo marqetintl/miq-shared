@@ -18,14 +18,6 @@ $header-footer-bg-color: #fff;
 
   margin: 2rem auto;
 
-  &:hover {
-    // border: 1px solid vars.$color-primary-2;
-  }
-
-  &.active {
-    // border: 1px solid vars.$color-primary;
-  }
-
   &-body {
     padding-top: 1rem;
     padding-bottom: 1rem;
@@ -68,11 +60,6 @@ $header-footer-bg-color: #fff;
         // background-color: #fff;
         padding: 6px;
         border-radius: 6px;
-
-        &:hover {
-          // color: vars.$color-primary;
-          // background: vars.$color-primary-2;
-        }
       }
     }
   }

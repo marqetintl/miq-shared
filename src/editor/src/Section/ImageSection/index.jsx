@@ -18,7 +18,12 @@ import { sectionRequiredProps } from '../utils';
 
 const ImgUploadButton = ({ children }) => {
   return (
-    <div className="" onClick={() => console.log('Uploading...')}>
+    <div
+      className=""
+      onClick={() => {
+        // console.log('Uploading...');
+      }}
+    >
       {children}
     </div>
   );

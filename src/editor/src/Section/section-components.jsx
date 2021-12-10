@@ -5,7 +5,7 @@ import { IconButton, Icons, Img, ImgUploadButton } from '@miq/components';
 import { isRequired } from '@miq/utils';
 import { sectionRequiredProps, sectionServices } from './utils';
 import render from './section-renderers';
-import Form, { FormProvider, useForm } from '@miq/form';
+import Form, { FormProvider } from '@miq/form';
 
 export const SectionAddButton = (props) => {
   const { sourceSlug = isRequired('section source slug'), type = isRequired('section type') } = props;
@@ -24,7 +24,7 @@ export const SectionSaveButton = (props) => {
 
   const handleSave = (e) => {
     const shouldSave = data.text !== form.values.text;
-    console.log('Saving', shouldSave);
+    // console.log('Saving', shouldSave);
 
     if (!shouldSave) return context.setEdit(!context.isEdit);
     if (!props.onSave) return;
@@ -43,7 +43,6 @@ SectionSaveButton.propTypes = {
 };
 
 export const SectionDeleteButton = (props) => {
-  console.log(props);
   const { context = isRequired('section context') } = props;
   const { data = isRequired('section data') } = props;
 

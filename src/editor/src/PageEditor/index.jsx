@@ -23,7 +23,7 @@ export const PageEditorSections = ({
   }, [pageSlug, sourceType]);
 
   const handleSectionChange = (newData) => {
-    console.log(newData);
+    // console.log(newData);
     setSections({
       ...sections,
       results: sections.results.map((item) => {

@@ -33,29 +33,7 @@ export default function render(data) {
     case 'JUMB':
       return componentToHtml(<Jumbotron {...data} />);
 
-    case 'CLOSE':
-      return componentToHtml(<CloseTemplateRender {...data} />);
-
     default:
       return `<div>${data.text}</div>`;
   }
 }
-
-/**
- * UI
- */
-
-const CloseTemplateRender = (data = {}) => {
-  const { title, text, image } = data;
-
-  return (
-    <div className="close-template" style={{ backgroundImage: image ? `url(${image.src})` : null }}>
-      <div className="close-template-inner">
-        <div className="text-center p-3">
-          {title && <h1 className="close-template-title mb-1">{title}</h1>}
-          {text && <h3 className="close-template-text">{text}</h3>}
-        </div>
-      </div>
-    </div>
-  );
-};

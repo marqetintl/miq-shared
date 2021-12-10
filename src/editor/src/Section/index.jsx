@@ -20,8 +20,6 @@ const getSectionComponent = (type) => {
       return lazy(() => import('./ImageSection'));
     case 'JUMB':
       return lazy(() => import('./JumbotronSection'));
-    case 'CLOSE':
-      return lazy(() => import('./CloseTemplateSection'));
 
     default:
       return TextSection;
