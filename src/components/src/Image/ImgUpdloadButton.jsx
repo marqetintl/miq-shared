@@ -31,13 +31,13 @@ const postImage = (file = isRequired('File'), alt_text = '') => {
   });
 };
 
-const patchImage = (imgSlug, file = isRequired('File'), alt_text = '') => {
+const patchImage = (imgSlug, file = isRequired('File'), alt_text = '', isMobile = false) => {
   if (file.name.length > 499) {
     return Promise.reject('Filename too long');
   }
 
   const fd = new FormData();
-  fd.append('src', file, file.name);
+  fd.append(isMobile ? 'src_mobile' : 'src', file, file.name);
   fd.append('alt_text', alt_text);
 
   return services().patch(`/api/v1/images/${imgSlug}/`, fd, {
@@ -48,20 +48,22 @@ const patchImage = (imgSlug, file = isRequired('File'), alt_text = '') => {
 export const ImgUploadButton = forwardRef(({ children, ...props }, ref) => {
   let uploadRef = createRef();
 
-  const { slug, onCreate, onUpdate, onError, alt_text = '', multiple, accept = 'image/*', ...rest } = props;
+  const { slug, onCreate, onUpdate, onError, alt_text = '', isMobile, multiple, accept = 'image/*', ...rest } = props;
 
   const uploadFile = (e) => {
     const func = slug ? patchImage : postImage;
     const callback = slug ? onUpdate : onCreate;
     const file = Array.from(e.target.files)[0];
-    const args = slug ? [slug, file, alt_text] : [file, alt_text];
+
+    let args = slug ? [slug, file, alt_text] : [file, alt_text];
+    if (slug && isMobile) args.push(isMobile);
 
     return func(...args)
       .then((data) => {
         if (callback) return callback(data);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
         if (onError) return onError(err);
       });
   };
