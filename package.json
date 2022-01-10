@@ -2,9 +2,6 @@
   "name": "@miq/sharedjs",
   "version": "0.0.1",
   "main": "src/index.jsx",
-  "dependencies": {
-    "lodash": "^4.17.21"
-  },
   "scripts": {
     "test": "jest",
     "storybook": "start-storybook -p 6006",
