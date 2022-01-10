@@ -1,8 +1,9 @@
-import { throttle } from 'lodash';
 import { useEffect, useRef, useState } from 'react';
-import { getClassName } from '@miq/utils';
+import throttle from 'lodash.throttle';
 
 import './collapse.scss';
+
+import { getClassName } from '@miq/utils';
 
 export function Collapse({ isOpen, header, children, ...props }) {
   const headerRef = useRef(null);

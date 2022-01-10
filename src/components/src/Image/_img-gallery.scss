@@ -1,10 +1,24 @@
-.img-gallery-horizontal {
+@use '@miq/styles/src/variables' as *;
+@use '@miq/styles/src/mixins' as *;
+
+.imgs-gallery-horizontal {
   overflow: auto;
 
-  &-inner {
-    width: auto;
+  .imgs-gallery-horizontal-inner {
+    // width: auto;
     display: flex;
     align-items: center;
+
+    @include md-screen {
+      &.md-vertical {
+        flex-direction: column;
+
+        .gallery-item {
+          margin-right: 0;
+          margin-bottom: 6px;
+        }
+      }
+    }
   }
 
   .gallery-item {
@@ -16,7 +30,6 @@
       max-width: none;
       display: block;
       height: auto;
-      // max-height: calc(100vh - 100px);
       max-height: 100vh;
       width: auto;
     }

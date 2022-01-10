@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "jsx": "preserve",
+    "jsx": "react",
     "module": "commonJS"
   },
   "include": ["src/**/*.js|jsx"],

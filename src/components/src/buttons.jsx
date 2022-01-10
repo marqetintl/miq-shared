@@ -1,12 +1,13 @@
 import { forwardRef, useState } from 'react';
 import PropTypes from 'prop-types';
+import isFunction from 'lodash.isfunction';
 import { NavLink } from 'react-router-dom';
+
+import './buttons.scss';
 
 import { getClassName } from '@miq/utils';
 import { Portal } from './Modal';
-
-import './buttons.scss';
-import { isFunction } from 'lodash';
+import { Plus } from './icons';
 
 const propTypes = {
   title: PropTypes.string,
@@ -123,4 +124,10 @@ export const ConfirmIconButton = ({ render, onCancel, onSuccess, ...props }) => 
       </Portal>
     </div>
   );
+};
+
+// =======================================================
+
+export const IBtnSave = (props) => {
+  return <IconButton Icon={Plus} {...props} />;
 };

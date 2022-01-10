@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { isFunction } from 'lodash';
+import isFunction from 'lodash.isfunction';
 
 import { getClassName } from '@miq/utils';
 

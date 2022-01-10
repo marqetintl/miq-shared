@@ -5,3 +5,4 @@ export * from './ImgSquare';
 export * from './ImgPlaceholderDiv';
 export * from './ImgUpdloadButton';
 export * from './ImgDeleteIconButton';
+export * from './components';

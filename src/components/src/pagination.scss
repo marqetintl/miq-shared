@@ -1,0 +1,46 @@
+// TODO: bgcolor to anchor
+
+.miq-pagination-links {
+  .item {
+    margin: auto 4px;
+    height: 32px;
+    min-width: 32px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    border-radius: 16px;
+
+    background-color: var(--gray-100, gray);
+
+    &.empty {
+      background-color: white;
+    }
+
+    &:hover:not(&.empty) {
+      background-color: var(--blue-100, blue);
+    }
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 32px;
+      height: 32px;
+    }
+
+    &.current {
+      background-color: var(--blue-600, blue);
+
+      a {
+        color: white;
+      }
+    }
+  }
+
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
+}

@@ -30,6 +30,15 @@ const postImage = (file = isRequired('File'), alt_text = '') => {
     headers: { 'content-type': 'multipart/form-data' },
   });
 };
+const postImageFromUrl = (url = isRequired('Url'), alt_text = '') => {
+  const fd = new FormData();
+  fd.append('src', url);
+  fd.append('alt_text', alt_text);
+
+  return services().post(`/api/v1/images/`, fd, {
+    headers: { 'content-type': 'multipart/form-data' },
+  });
+};
 
 const patchImage = (imgSlug, file = isRequired('File'), alt_text = '', isMobile = false) => {
   if (file.name.length > 499) {
@@ -106,3 +115,5 @@ export const ImgUploadButton = forwardRef(({ children, ...props }, ref) => {
 });
 
 ImgUploadButton.propTypes = propTypes;
+ImgUploadButton.postImage = postImage;
+ImgUploadButton.postImageFromUrl = postImageFromUrl;

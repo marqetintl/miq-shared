@@ -1,5 +1,7 @@
 import { useContext } from 'react';
 import PropTypes from 'prop-types';
+import isInteger from 'lodash.isinteger';
+import isArray from 'lodash.isarray';
 
 import { SharedDataCtx } from '@miq/contexts';
 import { services, getClassName, getImgUrl } from '@miq/utils';
@@ -11,7 +13,6 @@ import { ImgSquare } from '../Image';
 import { ImgUploadButton } from '../Image/ImgUpdloadButton';
 
 import './Avatar.scss';
-import { isArray, isInteger } from 'lodash';
 
 export const Avatar = (props) => {
   const src = props.thumb_sq || props.thumb || props.src;

@@ -12,15 +12,19 @@ export const Picture = (props) => {
 
   src = getImgUrl(src);
   src_mobile = getImgUrl(src_mobile);
-  const srcSet = getClassName([src_mobile && `${src_mobile} 480w,`, `${src} ${props.width}w`]);
+  const orientation =
+    props?.width < props?.height ? 'portrait' : props?.width === props?.height ? 'square' : 'landscape';
 
   return (
     <picture>
       <source srcSet={src} media={`(min-width: 768px)`} />
       <img
+        {...rest}
         src={src_mobile || src}
-        alt={props.alt_text || ''}
-        className={getClassName(['miq-img miq-img-picture', rest.className])}
+        alt={props.alt_text || props.title || ''}
+        className={getClassName(['miq-img miq-img-picture', orientation, rest.className])}
+        title={props.title}
+        aria-label={props.aria_label || props.title}
       />
     </picture>
   );
@@ -34,14 +38,18 @@ export const Img = (props) => {
 
   src = getImgUrl(src);
   src_mobile = getImgUrl(src_mobile);
+  const orientation =
+    props?.width < props?.height ? 'portrait' : props?.width === props?.height ? 'square' : 'landscape';
 
   return (
     <img
       width={isMobile ? width_mobile : props.width}
       height={isMobile ? height_mobile : props.height}
       src={isMobile ? src_mobile : src}
-      alt={props.alt_text || ''}
-      className={getClassName(['miq-img', isMobile && 'miq-img-mobile', rest.className])}
+      alt={props.alt_text || props.title || ''}
+      title={props.title}
+      aria-label={props.ariaLabel || props.title}
+      className={getClassName(['miq-img', isMobile && 'miq-img-mobile', orientation, rest.className])}
     />
   );
 };
