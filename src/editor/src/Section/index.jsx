@@ -15,9 +15,14 @@ const getSectionComponent = (type) => {
   switch (type) {
     case 'MD':
       return lazy(() => import('./MarkdownSection'));
-    // return MarkdownSection;
+
     case 'IMG':
       return lazy(() => import('./ImageSection'));
+
+    case 'HGAL':
+    case 'VGAL':
+      return lazy(() => import('./ImagesSection'));
+
     case 'JUMB':
       return lazy(() => import('./JumbotronSection'));
 

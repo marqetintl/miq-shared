@@ -4,23 +4,23 @@ import { indexStaffServices, pageStaffServices } from './utils';
 import { sectionServices } from '../Section/utils';
 import { Section } from '..';
 
-export const PageEditor = ({ children, ...props }) => {
+export const SectionsEditor = ({ children, ...props }) => {
   return <div className="miq-page-editor">{children}</div>;
 };
 
-export const PageEditorSections = ({
-  pageSlug = isRequired('page slug'),
-  sourceType = isRequired('page type(page/index)'),
+const Sections = ({
+  sourceSlug = isRequired('source slug'),
+  sourceType = isRequired('source type(page/index etc)'),
   ...props
 }) => {
   const [sections, setSections] = useState({ results: [] });
   useEffect(() => {
-    if (!pageSlug) return;
+    if (!sourceSlug) return;
 
-    sectionServices.list({ source: pageSlug, source_type: sourceType }).then((data) => {
+    sectionServices.list({ source: sourceSlug, source_type: sourceType }).then((data) => {
       setSections(data);
     });
-  }, [pageSlug, sourceType]);
+  }, [sourceSlug, sourceType]);
 
   const handleSectionChange = (newData) => {
     // console.log(newData);
@@ -44,8 +44,8 @@ export const PageEditorSections = ({
 
 //
 
-PageEditor.propTypes = {};
-PageEditor.Sections = PageEditorSections;
+SectionsEditor.propTypes = {};
+SectionsEditor.Sections = Sections;
 
 //
 

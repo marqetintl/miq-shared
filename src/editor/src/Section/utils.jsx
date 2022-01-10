@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { API, StaffService } from '@miq/utils';
+import { StaffService } from '@miq/utils';
 
 export const sectionRequiredProps = {
   data: PropTypes.shape({ slug: PropTypes.string }).isRequired,

@@ -52,4 +52,4 @@ export const EditorSections = ({
 export { Section };
 
 export { componentToHtml } from './Section/section-renderers';
-export * from './PageEditor';
+export * from './SectionsEditor';

@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 
-import { IconButton, Icons, Img, ImgUploadButton } from '@miq/components';
+import { IconButton, Icons, ImgUploadButton } from '@miq/components';
 
-import { isRequired } from '@miq/utils';
+import { isRequired, getClassName, patchService, API } from '@miq/utils';
 import { sectionRequiredProps, sectionServices } from './utils';
 import render from './section-renderers';
 import Form, { FormProvider } from '@miq/form';
@@ -43,16 +43,18 @@ SectionSaveButton.propTypes = {
 };
 
 export const SectionDeleteButton = (props) => {
-  const { context = isRequired('section context') } = props;
   const { data = isRequired('section data') } = props;
 
   return (
     <IconButton
-      {...props}
       Icon={Icons.Trash}
-      className="section-btn btn-danger"
       title="Delete"
-      onClick={() => context.remove(data.slug)}
+      onClick={() =>
+        sectionServices.delete(data.slug).then((res) => {
+          props.onSuccess && props.onSuccess({ ...res });
+        })
+      }
+      className={getClassName(['section-btn btn-danger', props.className])}
     />
   );
 };
@@ -72,7 +74,7 @@ export const SectionEditButton = (props) => {
 };
 
 SectionEditButton.propTypes = {
-  ...sectionRequiredProps,
+  context: PropTypes.shape({ isEdit: PropTypes.bool }).isRequired,
 };
 
 export const SectionImgUploadButton = ({ imgSlug, section = isRequired('Section data'), ...props }) => {
@@ -81,30 +83,35 @@ export const SectionImgUploadButton = ({ imgSlug, section = isRequired('Section 
   const { type } = section;
   const { onCreate, onUpdate, ...rest } = props;
 
-  const handleUpload = ({ isUpdated, ...imgData }) => {
+  const handleUpload = ({ isUpdated, ...imgData }, isPatch = false) => {
     const { slug } = imgData;
 
     // TODO
-    let images = section.images;
+    let images = section.images || [];
     if (!images.includes(slug)) {
       images.push(slug);
-      // section.images_data.push(imgData);
+    }
+    let images_data = [...section.images_data, imgData];
+    if (isPatch) {
+      images_data = section.images_data.map((img) => {
+        if (img.slug === imgData.slug) return imgData;
+        return img;
+      });
     }
 
-    const html = render({ ...section, image: imgData, images });
+    const html = render({ ...section, image: imgData, images, images_data });
+    return sectionServices.patch(section.slug, { type, images, html }).then((sectionData) => {
+      if (sectionData.isUpdated) {
+        if (imgSlug && onUpdate) return onUpdate(sectionData);
 
-    return sectionServices
-      .patch(section.slug, { type, images, html }, { type, images: section.images, html: section.html })
-      .then((sectionData) => {
-        if (sectionData.isUpdated) {
-          if (imgSlug && onUpdate) return onUpdate(sectionData);
-
-          onCreate && onCreate(sectionData);
-        }
-      });
+        onCreate && onCreate(sectionData);
+      }
+    });
   };
 
-  return <ImgUploadButton {...rest} onCreate={handleUpload} onUpdate={handleUpload} slug={imgSlug} />;
+  return (
+    <ImgUploadButton {...rest} onCreate={handleUpload} onUpdate={(data) => handleUpload(data, true)} slug={imgSlug} />
+  );
 };
 
 SectionImgUploadButton.propTypes = {
@@ -128,6 +135,30 @@ export const SectionTextInput = (props) => {
   return <Form.TextInput placeholder="Write text..." {...props} name="text" />;
 };
 
+export const SectionImgAltTextInput = ({ img = {}, ...props }) => {
+  if (!img || !img.slug) return null;
+
+  const { form = isRequired('form'), onSuccess } = props;
+
+  return (
+    <Form.TextInput
+      placeholder="Write alt text..."
+      onSave={({ value }) => {
+        return patchService(API, `images/${img.slug}/`, { alt_text: value }, {})
+          .catch((err) => form.handleError(err))
+          .then((imgData) => {
+            onSuccess && onSuccess(imgData);
+          });
+      }}
+      required
+      {...props}
+      name="alt_text"
+      error={form.errors.alt_text}
+      maxLength={99}
+    />
+  );
+};
+
 /**
  * FORM
  */
@@ -138,3 +169,4 @@ export const SectionEditForm = ({ form = isRequired('form'), children, ...props 
 
 SectionEditForm.TitleInput = SectionTitleInput;
 SectionEditForm.TextInput = SectionTextInput;
+SectionEditForm.ImgAltTextInput = SectionImgAltTextInput;

@@ -1,33 +1,81 @@
 import { forwardRef, useState } from 'react';
 
 import { Img, Icons } from '@miq/components';
-import { getClassName, IS_DEV } from '@miq/utils';
+import { getClassName, IS_DEV, isRequired } from '@miq/utils';
+import { useForm } from '@miq/form';
 
 import './img-section.scss';
 
-import { SectionDeleteButton } from '../section-components';
-import { SectionBody, SectionFooter, SectionHeader } from '../section-ui';
+import { SectionDeleteButton, SectionEditForm, SectionImgUploadButton } from '../section-components';
+import { SectionBody, SectionHeader } from '../section-ui';
 
 import { sectionRequiredProps } from '../utils';
+
+export const SectionImageUpdateForm = ({ image = isRequired('image'), children, ...props }) => {
+  const { section = isRequired('section') } = props;
+  const form = useForm({ alt_text: image ? image.alt_text : '' });
+  if (!image)
+    return (
+      <SectionImgUploadButton
+        section={section}
+        imgSlug={image ? image.slug : null}
+        onCreate={props.onDataChange}
+        onUpdate={props.onDataChange}
+      />
+    );
+  return (
+    <SectionEditForm form={form}>
+      <Img {...image} />
+
+      <div className="mt-1 w-100">
+        <SectionEditForm.ImgAltTextInput img={image} form={form} />
+      </div>
+    </SectionEditForm>
+  );
+};
+
+const ImageSection = forwardRef((props, ref) => {
+  const { className, id, ...rest } = props;
+  const { image = {} } = rest.data;
+
+  return (
+    <div id={id} ref={ref} className={getClassName([className, 'section-img'])}>
+      <SectionHeader Icon={Icons.Image}>
+        <div className="d-flex">
+          <SectionDeleteButton
+            {...rest}
+            onSuccess={(res) => {
+              console.log(res);
+            }}
+            className="me-2"
+          />
+        </div>
+      </SectionHeader>
+
+      <SectionBody>
+        <div className="d-flex flex-column align-items-center justify-content-center" style={{ minHeight: 100 }}>
+          <SectionImageUpdateForm image={image} section={rest.data} onDataChange={props.onDataChange} />
+        </div>
+      </SectionBody>
+    </div>
+  );
+});
+
+ImageSection.propTypes = {
+  ...sectionRequiredProps,
+};
+
+export default ImageSection;
+
+if (IS_DEV) {
+  ImageSection.displayName = 'ImageSection';
+}
 
 /**
  * IMAGE SECTION
  * images Icon:viewlist
  * slider; distribute-horizontal
  */
-
-const ImgUploadButton = ({ children }) => {
-  return (
-    <div
-      className=""
-      onClick={() => {
-        // console.log('Uploading...');
-      }}
-    >
-      {children}
-    </div>
-  );
-};
 
 const UploadTab = (props) => {
   const { tab } = props;
@@ -62,8 +110,6 @@ const ImgSectionEdit = (props) => {
       </div>
 
       <UploadTab {...{ tab }} />
-
-      <ImgUploadButton />
     </div>
   );
 };
@@ -80,37 +126,6 @@ const ImgSectionPreview = (props) => {
     <div
       className={getClassName(['section-preview', !data.image && 'empty'])}
       onClick={() => props.context.setEdit(!props.context.isEdit)}
-    >
-      <Img Icon={Icons.CloudArrowUp} src={src} />
-      {!data.image && <span>Click to upload an image</span>}
-    </div>
+    ></div>
   );
 };
-
-const ImageSection = forwardRef((props, ref) => {
-  return (
-    <div id={props.id} {...{ ref }} className={getClassName([props.className, 'section-img'])}>
-      <SectionHeader Icon={Icons.Image} />
-
-      <SectionBody>
-        <ImgSectionPreview {...props} />
-      </SectionBody>
-
-      <SectionFooter>
-        <div className="actions">
-          <SectionDeleteButton {...props} />
-        </div>
-      </SectionFooter>
-    </div>
-  );
-});
-
-JumbotronSection.propTypes = {
-  ...sectionRequiredProps,
-};
-
-export default ImageSection;
-
-if (IS_DEV) {
-  ImageSection.displayName = 'ImageSection';
-}
