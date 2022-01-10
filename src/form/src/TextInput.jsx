@@ -1,6 +1,7 @@
 import React, { forwardRef, useContext, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { debounce, isFunction } from 'lodash';
+import debounce from 'lodash.debounce';
+import isFunction from 'lodash.isfunction';
 
 import { TextareaX } from '@miq/components';
 import { getClassName, isRequired, IS_DEV } from '@miq/utils';
@@ -46,8 +47,8 @@ const withInput = (Component, args = {}) => {
       <>
         <Component
           {...rest}
-          className={getClassName([error && 'form-invalid', args.className, props.className])}
           {...{ value, checked, onChange }}
+          className={getClassName([error && 'form-invalid', args.className, props.className])}
           ref={ref}
         />
         {error && <div className="miq-form-error">{error}</div>}

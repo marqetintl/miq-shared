@@ -29,11 +29,17 @@ export default function useForm(defaultValues = {}) {
       return;
     }
 
+    const { response } = err;
+    if (response.status !== 400) {
+      IS_DEV && log && console.error(`Request error status: ${response.status}`);
+      return err;
+    }
+
     let newData = {};
-    const { data } = err.response;
+    const { data } = response;
 
     if (IS_DEV && log) {
-      console.log('ERROR=>', data);
+      console.error('ERROR=>', data);
     }
 
     Object.keys(data).forEach((key) => {
@@ -46,5 +52,15 @@ export default function useForm(defaultValues = {}) {
 
     setErrors({ ...newData });
   };
-  return { values, handleChange, toggleCheck, setValue, setValues, errors, setErrors, handleError };
+  return {
+    values,
+    handleChange,
+    toggleCheck,
+    setValue,
+    setValues,
+    errors,
+    setErrors,
+    handleError,
+    hasErrors: () => Object.keys(errors).join() !== '',
+  };
 }

@@ -7,7 +7,8 @@
     "@miq/components": "workspace:*",
     "@miq/styles": "workspace:*",
     "@miq/utils": "workspace:*",
-    "lodash": "^4.17.21",
+    "lodash.debounce": "^4.0.8",
+    "lodash.isfunction": "^3.0.9",
     "prop-types": "^15.7.2"
   },
   "devDependencies": {

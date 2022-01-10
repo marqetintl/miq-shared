@@ -8,6 +8,7 @@ import { getClassName } from '@miq/utils/';
 
 import { FormProvider } from './FormCtx';
 import CheckboxInput from './CheckboxInput';
+import SelectInput from './SelectInput';
 
 const propTypes = {
   id: PropTypes.string,
@@ -42,6 +43,7 @@ Form.Field = FormField;
 Form.Label = Label;
 Form.TextInput = TextInput;
 Form.CheckboxInput = CheckboxInput;
+Form.SelectInput = SelectInput;
 Form.TextArea = TextArea;
 Form.TextAreaX = TextAreaX;
 
