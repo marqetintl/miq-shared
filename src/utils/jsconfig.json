@@ -1,9 +1,10 @@
 {
-    "compilerOptions": {
-        "target": "es6",
-        "jsx": "preserve",
-        "module": "commonjs"
-    },
-    "include": ["src/**/*.js"],
-    "exclude": ["src/index.jsx"]
+  "compilerOptions": {
+    "target": "es6",
+    "baseUrl": "src",
+    "jsx": "react",
+    "paths": {}
+  },
+  "include": ["src"],
+  "exclude": ["src/index.jsx"]
 }

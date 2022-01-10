@@ -49,24 +49,20 @@ export const getSharedData = () =>
   });
 
 export const getImgUrl = (src) => {
-  if (IS_DEV && src) {
+  if (IS_DEV && src && !src.includes('http')) {
     const domain = new URL(DOMAIN);
-    if (!src.includes('http')) {
-      src = `${domain.origin}${src}`;
-    }
+    return `${domain.origin}${src}`;
   }
   return src;
 };
 
 export const getClassName = (df = []) => {
-  let className;
-  if (Array.isArray(df)) {
-    className = df
-      .map((i) => i && `${i}`)
-      .filter(Boolean)
-      .join(' ');
-  }
-  return className;
+  if (!Array.isArray(df)) return '';
+
+  return df
+    .map((i) => i && `${i}`)
+    .filter(Boolean)
+    .join(' ');
 };
 
 export const addForwardSlash = (str = isRequired('string param')) => (str.endsWith('/') ? str : `${str}/`);

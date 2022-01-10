@@ -1,4 +1,4 @@
-import { isEqual } from 'lodash';
+import isEqual from 'lodash.isequal';
 import { addForwardSlash, isRequired } from './helpers';
 import { API, HTTP } from './requests';
 
@@ -35,6 +35,7 @@ export const postService = (request, path, values, config) =>
  * @param {*} config
  * @returns
  */
+
 export const patchService = (request, path, values, oldValues, config) =>
   new Promise((resolve, reject) => {
     if (oldValues && isEqual(values, oldValues)) {
@@ -59,7 +60,8 @@ export const deleteService = (request, path) =>
     request
       .delete(path)
       .then((res) => {
-        if (res.status !== 204) return reject(res);
+        if (res.status !== 204 && res.status !== 200) return reject(res);
+        if (res.data) return resolve(res.data);
         return resolve({ deleted: true });
       })
       .catch((err) => reject(err))
@@ -114,7 +116,6 @@ class Service {
   path = null;
 
   constructor(path = isRequired('path')) {
-    // this.request = request;
     this.path = addForwardSlash(path);
   }
 
@@ -123,8 +124,7 @@ class Service {
   }
 
   detail(slug, params) {
-    slug = addForwardSlash(slug);
-    return this.get(`${this.path}${slug}`, params);
+    return this.get(`${this.path}${addForwardSlash(slug)}`, params);
   }
 
   get(path, params) {
@@ -135,9 +135,12 @@ class Service {
     return postService(this.request, path || `${this.path}`, values, config);
   }
 
+  postPath(path, values, config) {
+    return postService(this.request, path, values, config);
+  }
+
   patch(slug, values, oldValues, config) {
-    slug = addForwardSlash(slug);
-    return patchService(this.request, `${this.path}${slug}`, values, oldValues, config);
+    return patchService(this.request, `${this.path}${addForwardSlash(slug)}`, values, oldValues, config);
   }
 
   patchPath(path, values, oldValues, config) {
@@ -145,8 +148,11 @@ class Service {
   }
 
   delete(slug) {
-    slug = addForwardSlash(slug);
-    return deleteService(this.request, `${this.path}${slug}`);
+    return this.deletePath(`${this.path}${addForwardSlash(slug)}`);
+  }
+
+  deletePath(path) {
+    return deleteService(this.request, path);
   }
 }
 
